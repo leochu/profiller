@@ -1,0 +1,50 @@
+package com.profiller.services.impl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.inject.Inject;
+import com.profiller.commons.Persistence;
+import com.profiller.commons.utils.CryptoUtils;
+import com.profiller.models.ebean.User;
+import com.profiller.services.UserService;
+
+public class UserServiceImpl
+    implements UserService
+{
+    private Persistence persistence;
+
+    @Inject
+    public UserServiceImpl( Persistence persistence )
+    {
+        this.persistence = persistence;
+    }
+
+    @Override
+    public void createUser( User user )
+    {
+        String rawSecret = user.getSecret();
+
+        String salt = CryptoUtils.generateSalt();
+
+        String hashedSecret = CryptoUtils.hashSecret( rawSecret, salt );
+
+        String emailMD5 = CryptoUtils.MD5( user.getEmail().trim().toLowerCase() );
+
+        user.setSalt( salt );
+        user.setSecret( hashedSecret );
+        user.setEmailMD5( emailMD5 );
+
+        this.persistence.save( user );
+    }
+
+    @Override
+    public User getUserByEmailMD5( String emailMD5 )
+    {
+        Map<String, Object> criteria = new HashMap<String, Object>();
+        criteria.put( "emailMD5", emailMD5 );
+
+        return null;
+    }
+
+}
