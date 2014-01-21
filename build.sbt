@@ -11,3 +11,11 @@ libraryDependencies ++= Seq(
 )     
 
 play.Project.playJavaSettings
+
+jacoco.settings
+
+ScctPlugin.instrumentSettings
+
+parallelExecution in jacoco.Config := false
+
+jacoco.excludes in jacoco.Config := Seq("*Reverse*", "Routes*", "*routes*")

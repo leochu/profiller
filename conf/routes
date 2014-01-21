@@ -6,5 +6,7 @@
 GET     /                           @com.profiller.controllers.MainViewController.index()
 GET		/api/users/:id				@com.profiller.controllers.UserController.getUser(id: String)
 
+POST	/register					@com.profiller.controllers.UserController.registerUser()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /site/*file               controllers.Assets.at(path="/public", file)

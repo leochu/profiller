@@ -1,16 +1,25 @@
 package com.profiller.models.ebean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class User
     extends BaseModel
 {
+    @Column( unique = true )
     private String email;
 
     private String firstName;
 
     private String lastName;
 
+    @JsonIgnore
     private String secret;
 
+    @JsonIgnore
     private String salt;
 
     private String emailMD5;

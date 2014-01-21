@@ -1,6 +1,8 @@
 package com.profiller.commons;
 
 import com.google.inject.AbstractModule;
+import com.profiller.services.UserService;
+import com.profiller.services.impl.UserServiceImpl;
 
 public class RuntimeModule
     extends AbstractModule
@@ -8,7 +10,7 @@ public class RuntimeModule
     @Override
     protected void configure()
     {
-        // TODO Auto-generated method stub
-
+        bind( UserService.class ).to( UserServiceImpl.class );
+        bind( Persistence.class ).to( EbeanPersistence.class );
     }
 }
