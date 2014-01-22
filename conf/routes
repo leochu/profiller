@@ -7,6 +7,8 @@ GET     /                           @com.profiller.controllers.MainViewControlle
 GET		/profile					@com.profiller.controllers.MainViewController.profile()
 GET		/register					@com.profiller.controllers.MainViewController.register()
 
+GET		/logout						@com.profiller.controllers.UserController.logout()
+GET		/session					@com.profiller.controllers.UserController.getUserInSession()
 POST	/login						@com.profiller.controllers.UserController.login()
 POST	/register					@com.profiller.controllers.UserController.registerUser()
 

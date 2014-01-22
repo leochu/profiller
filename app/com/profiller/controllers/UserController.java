@@ -10,7 +10,10 @@ import play.mvc.Result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.profiller.commons.ProfillerConstants;
 import com.profiller.commons.ProfillerException;
+import com.profiller.commons.utils.CryptoUtils;
 import com.profiller.models.ebean.User;
 import com.profiller.services.AuthenticationService;
 import com.profiller.services.UserService;
@@ -41,6 +44,23 @@ public class UserController
         return ok( userNode );
     }
 
+    public Result getUserInSession()
+    {
+        String emailMD5 = Controller.session( ProfillerConstants.SESSION_KEY_USER );
+
+        ObjectNode userNode = JsonNodeFactory.instance.objectNode();
+        userNode.put( "loggedIn", emailMD5 != null );
+        userNode.put( "emailMD5", emailMD5 );
+
+        return ok( userNode );
+    }
+
+    public Result logout()
+    {
+        Controller.session().clear();
+        return redirect( "site/login.html" );
+    }
+
     public Result login()
     {
         JsonNode requestBody = Controller.request().body().asJson();
@@ -48,10 +68,14 @@ public class UserController
         String userName = requestBody.get( "username" ).asText();
         String secret = requestBody.get( "secret" ).asText();
 
-        boolean authenticated = this.authenticationService.authenticate( userName.toLowerCase(), secret );
+        userName = userName.toLowerCase().trim();
+
+        boolean authenticated = this.authenticationService.authenticate( userName, secret );
 
         if ( authenticated )
         {
+            Controller.session( ProfillerConstants.SESSION_KEY_USER, CryptoUtils.MD5( userName ) );
+
             return ok( JsonNodeFactory.instance.objectNode() );
         }
 
@@ -70,7 +94,7 @@ public class UserController
 
         User user = new User();
 
-        user.setEmail( email.toLowerCase() );
+        user.setEmail( email.trim().toLowerCase() );
         user.setSecret( secret );
 
         this.userService.createUser( user );

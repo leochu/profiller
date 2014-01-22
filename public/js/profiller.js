@@ -1,3 +1,8 @@
+var loggedIn = {
+	loggedIn : false,
+	emailMD5 : null
+};
+
 // Activates the Carousel
 $('.carousel').carousel({
 	interval : 5000
@@ -68,4 +73,37 @@ function clearRegModal() {
 	$("#reg_secret").val('');
 	$("#reg_secret_confirm").val('');
 	$("#registrationErrorDiv").empty();
+}
+
+function isUserLoggedIn() {
+	$.ajax({
+		type : "GET",
+		url : "/session",
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(data) {
+			loggedIn = data;
+
+			if (data.loggedIn) {
+				$('#loginNavDiv').html('<a href="profile.html">Profile</a>');
+				$('#logoutNavDiv').html('<a href="/logout">Logout</a>');
+			} else {
+				$('#loginNavDiv').html('<a href="login.html">Login</a>');
+			}
+
+			getProfile();
+		}
+	});
+}
+
+function getProfile() {
+	$.ajax({
+		type : "GET",
+		url : "/api/users/" + loggedIn.emailMD5,
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(data) {
+			$('#prof_username').val(data.email);
+		}
+	});
 }

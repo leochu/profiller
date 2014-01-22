@@ -38,6 +38,7 @@
 					<li><a href="doc.html">Documentation</a></li>
 					<li><a href="faq.html">FAQ</a></li>
 					<li class="active"><a href="profile.html">Profile</a></li>
+					<li><a href="/logout">Logout</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -46,25 +47,26 @@
 	</nav>
 
 	<div class="container">
+
 		<div class="container login">
+			<div class="center" id="profileSavedMessageDiv"></div>
 			<div class="row ">
+
 				<div class="center span4 well">
-					<legend>Please Sign In</legend>
-					<div class="alert alert-error">
-						<a class="close" data-dismiss="alert" href="#">×</a>Incorrect
-						Username or Password!
-					</div>
-					<form method="POST" action="/login" accept-charset="UTF-8">
-						<input type="text" id="username" class="btn-block" name="username"
-							placeholder="Username" /> <br /> <input type="password"
-							id="secret" class="btn-block" name="secret"
-							placeholder="Password" />
-						<button type="submit" name="submit"
-							class="btn btn-primary btn-block">Sign in</button>
-					</form>
+
+					<legend>Profile</legend>
+					<div id="profileErrorDiv"></div>
+					<input type="text" id="prof_username" class="btn-block"
+						name="prof_username" disabled placeholder="Your email" /> <br />
+
 				</div>
 			</div>
+			<div class="center span4">
+				<button onclick="saveProfile()" id="saveProfileButton"
+					class="btn btn-success">Save</button>
+			</div>
 		</div>
+
 	</div>
 
 
@@ -87,6 +89,11 @@
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/profiller.js"></script>
+	<script>
+		$(document).ready(function() {
+			isUserLoggedIn();			
+		});
+	</script>
 
 </body>
 </html>

@@ -35,7 +35,8 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="doc.html">Documentation</a></li>
 					<li class="active"><a href="faq.html">FAQ</a></li>
-					<li><a href="login.html">Login</a></li>
+					<li id=loginNavDiv></li>
+					<li id=logoutNavDiv></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -118,6 +119,10 @@
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/profiller.js"></script>
-
+	<script>
+		$(document).ready(function() {
+			isUserLoggedIn();			
+		});
+	</script>
 </body>
 </html>
