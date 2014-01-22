@@ -7,7 +7,8 @@ libraryDependencies ++= Seq(
   javaEbean,
   cache,
   "com.google.inject" % "guice" % "4.0-beta",
-  "org.mindrot" % "jbcrypt" % "0.3m"
+  "org.mindrot" % "jbcrypt" % "0.3m",
+  "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
 )     
 
 play.Project.playJavaSettings
