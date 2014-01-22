@@ -55,13 +55,32 @@ public class UserController
 
     public Result registerUser()
     {
-        Form<User> form = Form.form( User.class );
-        User user = form.bindFromRequest().get();
+        JsonNode requestBody = Controller.request().body().asJson();
 
+        String email = requestBody.get( "reg_username" ).asText();
+        String secret = requestBody.get( "reg_secret" ).asText();
+        String secretConfirmation = requestBody.get( "reg_secret_confirm" ).asText();
+
+        
+        
+        User user = new User();
+        
+        user.setEmail( email );
+        user.setSecret( secret );
+                        
         this.userService.createUser( user );
 
         JsonNode userNode = Json.toJson( user );
 
         return ok( userNode );
+    }
+    
+    private void validateRegistration(String email, String secret, String secretConfirmation)
+    {
+        // invalid email
+        // email already taken
+        // password doesn't match
+        // password match
+        throw new RuntimeException("test error message");
     }
 }

@@ -5,6 +5,7 @@
 # Home page
 GET     /                           @com.profiller.controllers.MainViewController.index()
 GET		/profile					@com.profiller.controllers.MainViewController.profile()
+GET		/register					@com.profiller.controllers.MainViewController.register()
 
 POST	/login						@com.profiller.controllers.UserController.login()
 POST	/register					@com.profiller.controllers.UserController.registerUser()

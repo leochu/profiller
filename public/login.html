@@ -49,33 +49,73 @@
 		<div class="container login">
 			<div class="row ">
 				<div class="center span4 well">
-					<legend>Please Sign In</legend>
+					<legend>Sign In</legend>
 					<div id="errorDiv"></div>
 					<input type="text" id="username" class="btn-block" name="username"
-						placeholder="Username" /> <br /> <input type="password"
+						placeholder="Your email" /> <br /> <input type="password"
 						id="secret" class="btn-block" name="secret" placeholder="Password" />
 					<button onclick="login()" id="loginButton"
 						class="btn btn-primary btn-block">Sign in</button>
 				</div>
 			</div>
+			<div class="center span4">
+				<button onclick="clearRegModal()" data-toggle="modal"
+					data-target="#registerModal" id="registerButton"
+					class="btn btn-success">Sign up</button>
+			</div>
 		</div>
+
 	</div>
 
-
-
-
-	<div class="container">
-
-		<hr>
-
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-					<p>Copyright &copy; Profiller 2014</p>
+	<!-- Modal -->
+	<div class="modal fade" id="registerModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Join Profiller</h4>
 				</div>
-			</div>
-		</footer>
+				<div class="modal-body">
+					<div id="registrationErrorDiv"></div>
 
+					<label>Email Address</label> <input type="text" id="reg_username"
+						class="btn-block" name="reg_username" /> <label class="comment">This
+						will be your username.</label> <br /> <label>Password</label><input
+						type="password" id="reg_secret" class="btn-block"
+						name="reg_secret" /> <label class="comment">Use at least
+						one letter, one numeral, and eight characters.</label> <br /> <label>Confirm
+						your password</label><input type="password" id="reg_secret_confirm"
+						class="btn-block" name="reg_secret_confirm" /> <br />
+
+					<button onclick="register()" type="button" class="btn btn-success">Create
+						an account</button>
+				</div>
+				<!-- 				<div class="modal-footer"> -->
+				<!-- 					<button type="button" class="btn btn-success">Create an account</button> -->
+				<!-- 				</div> -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div class="navbar navbar-fixed-bottom">
+
+		<div class="container">
+
+			<hr>
+
+			<footer>
+				<div class="row">
+					<div class="col-lg-12">
+						<p>Copyright &copy; Profiller 2014</p>
+					</div>
+				</div>
+			</footer>
+
+		</div>
 	</div>
 	<!-- /.container -->
 

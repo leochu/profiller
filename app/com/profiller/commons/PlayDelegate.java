@@ -23,6 +23,13 @@ public class PlayDelegate
     }
 
     @Override
+    public Promise<SimpleResult> onError( RequestHeader header, Throwable t )
+    {
+
+        return super.onError( header, t );
+    }
+
+    @Override
     public Promise<SimpleResult> onHandlerNotFound( RequestHeader header )
     {
         final String path = header.path();
@@ -41,6 +48,15 @@ public class PlayDelegate
             } );
         }
 
-        return super.onHandlerNotFound( header );
+        return Promise.promise( new Function0<SimpleResult>()
+        {
+            @Override
+            public SimpleResult apply()
+                throws Throwable
+            {
+                return Results.redirect( "/site/404.html" );
+            }
+        } );
     }
+
 }

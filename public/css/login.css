@@ -1,4 +1,3 @@
-
 .login {
 	padding-top: 65px;
 }
@@ -7,4 +6,14 @@
 	float: none;
 	margin-left: 30%;
 	margin-right: 30%;
+}
+
+.error_message {
+	color: #b94a48;
+}
+
+.comment {
+	color: #696969;
+	font-size: 10px;
+	font-style: normal;
 }

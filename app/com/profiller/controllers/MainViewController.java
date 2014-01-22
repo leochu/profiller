@@ -15,4 +15,9 @@ public class MainViewController
     {
         return redirect( "site/profile.html" );
     }
+
+    public Result register()
+    {
+        return redirect( "site/register.html" );
+    }
 }

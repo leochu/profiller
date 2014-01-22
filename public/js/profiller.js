@@ -14,18 +14,48 @@ function login() {
 		secret : $(secret).val()
 	});
 
+	$
+			.ajax({
+				type : "POST",
+				url : "/login",
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : inputData,
+				success : function(data) {
+					document.location = "/profile";
+				},
+				error : function(XMLHttpRequest, status, error) {
+					$("#errorDiv")
+							.html(
+									'<label class="error_message">Incorrect Username or Password</label>');
+				}
+			});
+}
+
+function register() {
+	var inputData = JSON.stringify({
+		username : $(reg_username).val(),
+		secret : $(reg_secret).val(),
+		secretconfirm : $(reg_secret_confirm).val()
+	});
+
 	$.ajax({
 		type : "POST",
-		url : "/login",
+		url : "/register",
 		contentType : "application/json; charset=utf-8",
 		dataType : "json",
 		data : inputData,
 		success : function(data) {
-			document.location = "/profile";
+			$('#registerModal').modal('hide')
+
 		},
 		error : function(XMLHttpRequest, status, error) {
-			$("#errorDiv")
-					.html('<label>Incorrect Username or Password</label>');
+			$("#registrationErrorDiv").html(
+					'<label class="error_message">ErrorMessage</label>');
 		}
 	});
+}
+
+function clearRegModal() {
+	
 }
