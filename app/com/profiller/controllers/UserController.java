@@ -44,6 +44,27 @@ public class UserController
         return ok( userNode );
     }
 
+    public Result saveProfile()
+    {
+        JsonNode requestBody = Controller.request().body().asJson();
+
+        String firstName = requestBody.get( "firstName" ).asText();
+        String lastName = requestBody.get( "lastName" ).asText();
+        
+        String emailMD5 = Controller.session( ProfillerConstants.SESSION_KEY_USER );
+        
+        User user = new User();
+        user.setFirstName( firstName );
+        user.setLastName( lastName );
+        user.setEmailMD5( emailMD5 );
+        
+        this.userService.updateUser( user );
+        
+        JsonNode userNode = Json.toJson( user );
+
+        return ok( userNode );
+    }
+    
     public Result getUserInSession()
     {
         String emailMD5 = Controller.session( ProfillerConstants.SESSION_KEY_USER );

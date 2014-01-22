@@ -5,9 +5,12 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class BaseModel
 {
+    @JsonIgnore
     @Id
     protected UUID id;
 

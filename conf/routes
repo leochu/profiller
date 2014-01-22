@@ -12,6 +12,8 @@ GET		/session					@com.profiller.controllers.UserController.getUserInSession()
 POST	/login						@com.profiller.controllers.UserController.login()
 POST	/register					@com.profiller.controllers.UserController.registerUser()
 
+PUT		/api/users					@com.profiller.controllers.UserController.saveProfile()
+
 GET		/api/users/:id				@com.profiller.controllers.UserController.getUser(id: String)
 
 # Map static resources from the /public folder to the /assets URL path

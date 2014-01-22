@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import com.avaje.ebean.Ebean;
 import com.profiller.commons.Persistence;
 import com.profiller.commons.utils.CryptoUtils;
 import com.profiller.models.ebean.User;
@@ -55,6 +56,20 @@ public class UserServiceImpl
         criteria.put( "email", email );
 
         return (User) this.persistence.findOne( User.class, criteria );
+    }
+
+    @Override
+    public User updateUser( User user )
+    {
+        // TODO: write a generic update method in persistence class
+
+        User oldUser = this.getUserByEmailMD5( user.getEmailMD5() );
+        oldUser.setFirstName( user.getFirstName() );
+        oldUser.setLastName( user.getLastName() );
+
+        Ebean.update( oldUser );
+
+        return oldUser;
     }
 
 }

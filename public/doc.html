@@ -60,10 +60,40 @@
 
 		</div>
 
-		<div class="row">To do: add doc</div>
-
 	</div>
 	<!-- /.container -->
+
+	<div class="section">
+
+		<div class="container">
+			<h1>Developer's Guide</h1>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-4">
+					<h3>1. Create the MD5 Hash</h3>
+					<p>Be sure you trim and change all charactesr to lower case.
+						e.g. CryptoUtils.md5("profiller@example.com").toLowerCase();
+						MD5 Hash: c29f93b9ad8abd263b5b832d265dee85</p>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<h3>2. Invoke REST API with MD5 Hash</h3>
+					<p>http://profiller.heroku.com/api/users/MD5Hash</p>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<h3>3. Parse JSON response</h3>
+					<p>Payload: { email: "profiller@example.com", firstName: null,
+						lastName: null, emailMD5: "c29f93b9ad8abd263b5b832d265dee85" }</p>
+				</div>
+			</div>
+			<!-- /.row -->
+
+		</div>
+		<!-- /.container -->
+
+	</div>
+	<!-- /.section -->
+
+
 
 	<div class="navbar navbar-fixed-bottom">
 		<div class="container">

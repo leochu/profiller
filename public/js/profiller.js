@@ -104,6 +104,37 @@ function getProfile() {
 		dataType : "json",
 		success : function(data) {
 			$('#prof_username').val(data.email);
+			$('#prof_firstname').val(data.firstName);
+			$('#prof_lastname').val(data.lastName);
+
 		}
+	});
+}
+
+function saveProfile() {
+	var inputData = JSON.stringify({
+		firstName : $(prof_firstname).val(),
+		lastName : $(prof_lastname).val()
+	});
+
+	$.ajax({
+		type : "PUT",
+		url : "/api/users",
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		data : inputData,
+		success : function(data) {
+			$('#profileSavedMessageDiv').html(
+					'<label class="success_message"> Your profile has been saved.</label>')
+		}
+			// ,
+			// error : function(XMLHttpRequest, status, error) {
+			// var errorMessage = XMLHttpRequest.responseJSON.errorMessage;
+			//
+			// $("#registrationErrorDiv")
+			// .html(
+			// '<label class="error_message">' + errorMessage
+			// + '</label>');
+			//		}
 	});
 }
