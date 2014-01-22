@@ -3,6 +3,7 @@ package com.profiller.commons;
 import play.GlobalSettings;
 import play.libs.F.Function0;
 import play.libs.F.Promise;
+import play.mvc.Controller;
 import play.mvc.Http.RequestHeader;
 import play.mvc.Results;
 import play.mvc.SimpleResult;
@@ -25,7 +26,21 @@ public class PlayDelegate
     @Override
     public Promise<SimpleResult> onError( RequestHeader header, Throwable t )
     {
+        Throwable cause = t.getCause();
+        if ( cause instanceof ProfillerException )
+        {
+            final ProfillerException profillerException = (ProfillerException) cause;
 
+            return Promise.promise( new Function0<SimpleResult>()
+            {
+                @Override
+                public SimpleResult apply()
+                    throws Throwable
+                {
+                    return Controller.badRequest( profillerException.getErrorAsJson() );
+                }
+            } );
+        }
         return super.onError( header, t );
     }
 

@@ -8,6 +8,16 @@ public class ProfillerException
     extends RuntimeException
 {
 
+    public ProfillerException( String errorMessage )
+    {
+        super( errorMessage );
+    }
+
+    public ProfillerException( String errorMessage, Throwable throwable )
+    {
+        super( errorMessage, throwable );
+    }
+
     /**
      * 
      */

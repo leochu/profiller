@@ -33,10 +33,11 @@ function login() {
 }
 
 function register() {
+	$("#registrationErrorDiv").empty();
 	var inputData = JSON.stringify({
 		username : $(reg_username).val(),
 		secret : $(reg_secret).val(),
-		secretconfirm : $(reg_secret_confirm).val()
+		secretConfirm : $(reg_secret_confirm).val()
 	});
 
 	$.ajax({
@@ -47,15 +48,24 @@ function register() {
 		data : inputData,
 		success : function(data) {
 			$('#registerModal').modal('hide')
-
+			$('#registeredMessageDiv').html(
+					'<label class="success_message">' + data.email
+							+ ' has been succesfully registered.</label>')
 		},
 		error : function(XMLHttpRequest, status, error) {
-			$("#registrationErrorDiv").html(
-					'<label class="error_message">ErrorMessage</label>');
+			var errorMessage = XMLHttpRequest.responseJSON.errorMessage;
+
+			$("#registrationErrorDiv")
+					.html(
+							'<label class="error_message">' + errorMessage
+									+ '</label>');
 		}
 	});
 }
 
 function clearRegModal() {
-	
+	$("#reg_username").val('');
+	$("#reg_secret").val('');
+	$("#reg_secret_confirm").val('');
+	$("#registrationErrorDiv").empty();
 }

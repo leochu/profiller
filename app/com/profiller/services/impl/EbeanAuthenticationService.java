@@ -21,9 +21,9 @@ public class EbeanAuthenticationService
     @Override
     public boolean authenticate( String user, String secret )
     {
-        String emailMD5 = CryptoUtils.MD5( user.trim().toLowerCase() );
+        // String emailMD5 = CryptoUtils.MD5( user.trim().toLowerCase() );
 
-        User registeredUser = this.userService.getUserByEmailMD5(emailMD5);
+        User registeredUser = this.userService.getUserByEmail( user );
 
         if ( registeredUser != null )
         {
