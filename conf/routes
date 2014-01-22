@@ -4,9 +4,12 @@
 
 # Home page
 GET     /                           @com.profiller.controllers.MainViewController.index()
-GET		/api/users/:id				@com.profiller.controllers.UserController.getUser(id: String)
+GET		/profile					@com.profiller.controllers.MainViewController.profile()
 
+POST	/login						@com.profiller.controllers.UserController.login()
 POST	/register					@com.profiller.controllers.UserController.registerUser()
+
+GET		/api/users/:id				@com.profiller.controllers.UserController.getUser(id: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /site/*file               controllers.Assets.at(path="/public", file)

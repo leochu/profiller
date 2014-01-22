@@ -13,9 +13,9 @@ create table user (
   email                     varchar(255),
   first_name                varchar(255),
   last_name                 varchar(255),
-  secret                    varchar(255),
-  salt                      varchar(255),
-  email_md5                 varchar(255),
+  secret                    varchar(512),
+  salt                      varchar(512),
+  email_md5                 varchar(512),
   constraint uq_user_email unique (email),
   constraint pk_user primary key (id))
 ;

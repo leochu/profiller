@@ -17,6 +17,6 @@ public class CryptoUtils
 
     public static String hashSecret( String rawSecret, String salt )
     {
-        return BCrypt.hashpw( rawSecret, BCrypt.gensalt() );
+        return BCrypt.hashpw( rawSecret, salt );
     }
 }

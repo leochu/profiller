@@ -10,4 +10,9 @@ public class MainViewController
     {
         return redirect( "site/index.html" );
     }
+
+    public Result profile()
+    {
+        return redirect( "site/profile.html" );
+    }
 }

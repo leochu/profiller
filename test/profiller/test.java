@@ -1,16 +1,28 @@
 package profiller;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import junit.framework.Assert;
+
 import org.junit.Test;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class test
 {
     @Test
     public void test()
     {
-        System.out.println( DigestUtils.sha256Hex( "MyEmailAddress@example.com ".trim().toLowerCase() ) );
-        System.out.println( DigestUtils.sha512Hex( "MyEmailAddress@example.com ".trim().toLowerCase() ) );
 
-        System.out.println( DigestUtils.md5Hex( "MyEmailAddress@example.com ".trim().toLowerCase() ) );
+        String salt = BCrypt.gensalt();
+
+        System.out.println(salt);
+        
+        String hash1 = BCrypt.hashpw( "abcd", salt );
+
+        String hash2 = BCrypt.hashpw( "abcd", salt );
+
+        System.out.println(hash1);
+
+        
+        Assert.assertEquals( hash1, hash2 );
+
     }
 }

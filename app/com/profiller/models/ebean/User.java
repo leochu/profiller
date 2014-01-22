@@ -17,11 +17,14 @@ public class User
     private String lastName;
 
     @JsonIgnore
+    @Column( length = 512 )
     private String secret;
 
     @JsonIgnore
+    @Column( length = 512 )
     private String salt;
 
+    @Column( length = 512 )
     private String emailMD5;
 
     public String getEmail()

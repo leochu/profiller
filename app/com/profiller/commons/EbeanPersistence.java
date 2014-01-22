@@ -41,6 +41,6 @@ public class EbeanPersistence
     {
         List<? extends BaseModel> models = this.find( clazz, criteria );
 
-        return ( models != null && models.size() > 1 ) ? models.get( 0 ) : null;
+        return ( models != null && models.size() > 0 ) ? models.get( 0 ) : null;
     }
 }

@@ -3,7 +3,8 @@ package com.profiller.services.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
+
 import com.profiller.commons.Persistence;
 import com.profiller.commons.utils.CryptoUtils;
 import com.profiller.models.ebean.User;
@@ -44,7 +45,16 @@ public class UserServiceImpl
         Map<String, Object> criteria = new HashMap<String, Object>();
         criteria.put( "emailMD5", emailMD5 );
 
-        return null;
+        return (User) this.persistence.findOne( User.class, criteria );
+    }
+
+    @Override
+    public User getUserByEmail( String email )
+    {
+        Map<String, Object> criteria = new HashMap<String, Object>();
+        criteria.put( "email", email );
+
+        return (User) this.persistence.findOne( User.class, criteria );
     }
 
 }
