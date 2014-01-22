@@ -2,10 +2,12 @@ package com.profiller.models.ebean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table( name = "prof_user" )
 public class User
     extends BaseModel
 {
